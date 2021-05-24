@@ -9,4 +9,4 @@ COPY ./index.html /usr/share/nginx/html/index.html
 EXPOSE 80
 
 #ENTRYPOINT ["/etc/init.d/nginx start"]
-
+CMD tail -f /dev/null
