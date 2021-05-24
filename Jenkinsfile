@@ -5,7 +5,7 @@ environment {
   IMAGE_NAME_LATEST = "${env.IMAGE_BASE}:latest"
 }
 
-def DOCKER_IMAGE_TAG = "v1.$BUILD_NUMBER"
+def DOCKER_IMAGE_BRANCH = "v$BUILD_NUMBER"
 def GIT_COMMIT_HASH = ""
 
 pipeline { 
@@ -27,7 +27,7 @@ pipeline {
 	stage("Create docker image") {
 	    steps {
 		echo " -------===== Start building images ====-------- "
-            	sh "docker build . -t ${IMAGE_NAME}"
+            	sh "docker build . -t project-build:${DOCKER_IMAGE_BRANCH}"
 	    }
 	}
     }
