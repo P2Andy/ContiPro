@@ -17,26 +17,11 @@ pipeline {
     agent any
 
     stages {
-
-        stage("Prepare build image") {
-            steps {
-                sh "docker build -f Dockerfile.build . -t project-build:${DOCKER_IMAGE_BRANCH}"
-            }
-        }
-
-        stage("Build project") {
-            agent {
-                docker {
-                    image "project-build:${DOCKER_IMAGE_BRANCH}"
-                    args "-v ${PWD}:/usr/src/app -w /usr/src/app"
-                    reuseNode true
-                    label "build-image"
-                }
-            }
-            steps {
-                sh "yarn"
-                sh "yarn build"
-            }
-        }
-   }
+	stage("Create docker image") {
+	    steps {
+		echo " -------===== Start building images ====-------- "
+            	sh "docker build -f Dockerfile.build . -t project-build:${DOCKER_IMAGE_BRANCH}"
+	    }
+	}
+    }
 }
