@@ -1,4 +1,4 @@
-def DOCKER_IMAGE_BRANCH = ""
+def DOCKER_IMAGE_BRANCH = "0.1"
 def GIT_COMMIT_HASH = ""
 
 pipeline { 
