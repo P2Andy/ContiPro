@@ -38,12 +38,5 @@ pipeline {
                 sh "yarn build"
             }
         }
-
-#    post {
-#        always {
-#            step([$class: "WsCleanup"])
-#            cleanWs()
-#        }
-#    }
-  }
+   }
 }
