@@ -19,8 +19,9 @@ pipeline {
     stages {
 	stage("Create docker image") {
 	    steps {
+		ls
 		echo " -------===== Start building images ====-------- "
-            	sh "docker build -f Dockerfile.build . -t project-build:${DOCKER_IMAGE_BRANCH}"
+            	sh "docker build . -t project-build:${DOCKER_IMAGE_BRANCH}"
 	    }
 	}
     }
