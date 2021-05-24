@@ -1,4 +1,11 @@
-def DOCKER_IMAGE_BRANCH = "0.1"
+environment {
+  IMAGE_BASE = 'contipro'
+  IMAGE_TAG = "v$BUILD_NUMBER"
+  IMAGE_NAME = "${env.IMAGE_BASE}:${env.IMAGE_TAG}"
+  IMAGE_NAME_LATEST = "${env.IMAGE_BASE}:latest"
+}
+
+def DOCKER_IMAGE_TAG = "v1.$BUILD_NUMBER"
 def GIT_COMMIT_HASH = ""
 
 pipeline { 
@@ -20,7 +27,7 @@ pipeline {
 	stage("Create docker image") {
 	    steps {
 		echo " -------===== Start building images ====-------- "
-            	sh "docker build . -t project-build:${DOCKER_IMAGE_BRANCH}"
+            	sh "docker build . -t project-build:${env.DOCKER_IMAGE_TAG}"
 	    }
 	}
     }
