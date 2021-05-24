@@ -13,7 +13,7 @@ pipeline {
         )
         disableConcurrentBuilds()
     }
-
+    triggers { poolSCM('* * * * *') }
     agent any
 
     stages {
