@@ -1,5 +1,5 @@
 environment {
-  IMAGE_BASE = 'contipro'
+  IMAGE_BASE = 'project-conti'
   IMAGE_TAG = "v$BUILD_NUMBER"
   IMAGE_NAME = "${env.IMAGE_BASE}:${env.IMAGE_TAG}"
   IMAGE_NAME_LATEST = "${env.IMAGE_BASE}:latest"
@@ -27,7 +27,7 @@ pipeline {
 	stage("Create docker image") {
 	    steps {
 		echo " -------===== Start building images ====-------- "
-            	sh "docker build . -t project-build:${env.DOCKER_IMAGE_TAG}"
+            	sh "docker build . -t ${IMAGE_NAME}"
 	    }
 	}
     }
