@@ -8,5 +8,5 @@ RUN echo "<html><head><title>My Continue Site</title></head><body>Hello my frien
 
 EXPOSE 80
 
-ENTRYPOINT ["/etc/init.d/nginx start"]
+#ENTRYPOINT ["/etc/init.d/nginx start"]
 
