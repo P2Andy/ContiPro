@@ -39,11 +39,11 @@ pipeline {
             }
         }
 
-    post {
-        always {
-            step([$class: "WsCleanup"])
-            cleanWs()
-        }
-    }
+#    post {
+#        always {
+#            step([$class: "WsCleanup"])
+#            cleanWs()
+#        }
+#    }
   }
 }
