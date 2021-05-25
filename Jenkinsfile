@@ -29,10 +29,6 @@ pipeline {
 		echo " -------===== Start building images ====-------- "
             	sh "docker build . -t project-build:${DOCKER_IMAGE_BRANCH}"
 	    }
-	    steps {
-		echo " -------===== Start Runung images ====-------- "
-            	sh "docker run --name andy-www --rm -d -p 81:80  project-build:${DOCKER_IMAGE_BRANCH}"
-	    }
 	}
     }
 }
