@@ -5,7 +5,7 @@ environment {
   IMAGE_NAME_LATEST = "${env.IMAGE_BASE}:latest"
 }
 
-def DOCKER_IMAGE_BRANCH = "v0.$BUILD_NUMBER"
+def DOCKER_IMAGE_BRANCH = "v$BUILD_NUMBER"
 def GIT_COMMIT_HASH = ""
 
 pipeline { 
