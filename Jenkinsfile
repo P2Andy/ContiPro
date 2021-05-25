@@ -35,9 +35,9 @@ pipeline {
 	    steps {
 		echo " -------===== Runing  building images ====-------- "
             	sh "docker run --name andy-www --rm -d -p 81:80 project-build:${DOCKER_IMAGE_BRANCH}"
-		if (`curl http://localhost:81/ -w %{http_code} -so /dev/null` == 200 ) {
-		    echo "Ok"
-		}
+//		if (`curl http://localhost:81/ -w %{http_code} -so /dev/null` == 200 ) {
+//		    echo "Ok"
+//		}
 	    }
 	}
 	stage("Stoping docker image") {
