@@ -6,6 +6,7 @@ environment {
 }
 
 def DOCKER_IMAGE_BRANCH = "v$BUILD_NUMBER"
+def DOCKER_INT_TEST = "andy-www"
 def GIT_COMMIT_HASH = ""
 
 pipeline { 
@@ -34,7 +35,19 @@ pipeline {
 	    steps {
 		echo " -------===== Runing  building images ====-------- "
             	sh "docker run --name andy-www --rm -d -p 81:80 project-build:${DOCKER_IMAGE_BRANCH}"
-		[ `curl http://localhost:81/ -w %{http_code} -so /dev/null` -eq 200 ]
+//		[ `curl http://localhost:81/ -w %{http_code} -so /dev/null` -eq 200 ]
+	    }
+	}
+	stage("Stoping docker image") {
+	    steps {
+		echo " -------===== Stop  building images ====-------- "
+            	sh "docker stop andy-www"
+	    }
+	}
+	stage("Delete docker image") {
+	    steps {
+		echo " -------===== delete  building images ====-------- "
+            	sh "docker rmi project-build:${DOCKER_IMAGE_BRANCH}"
 	    }
 	}
     }
