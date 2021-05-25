@@ -34,22 +34,23 @@ pipeline {
 	stage("Runing docker image") {
 	    steps {
 		echo " -------===== Runing  building images ====-------- "
-            	sh "docker run --name andy-www --rm -d -p 81:80 project-build:${DOCKER_IMAGE_BRANCH}"
-//		if (`curl http://localhost:81/ -w %{http_code} -so /dev/null` == 200 ) {
-//		    echo "Ok"
-//		}
+            	sh "docker run --name andy-tst --rm -d -p 82:80 project-build:${DOCKER_IMAGE_BRANCH}"
 	    }
 	}
 	stage("Stoping docker image") {
 	    steps {
 		echo " -------===== Stop  building images ====-------- "
-            	sh "docker stop andy-www"
+            	sh "docker stop andy-tst"
+		sh "docker tag project-build:last project-build:old"
+		sh "docker tag project-build:${DOCKER_IMAGE_BRANCH} project-build:last"
 	    }
 	}
 	stage("Delete docker image") {
 	    steps {
 		echo " -------===== delete  building images ====-------- "
-            	sh "docker rmi project-build:${DOCKER_IMAGE_BRANCH}"
+            	sh "docker stop andy-www"
+            	sh "docker rmi project-build:old"
+            	sh "docker run --name andy-www --rm -d -p 81:80 project-build:last"
 	    }
 	}
     }
