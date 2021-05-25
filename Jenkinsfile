@@ -34,6 +34,7 @@ pipeline {
 	    steps {
 		echo " -------===== Runing  building images ====-------- "
             	sh "docker run --name andy-www --rm -d -p 81:80 project-build:${DOCKER_IMAGE_BRANCH}"
+		[ `curl http://localhost:81/ -w %{http_code} -so /dev/null` -eq 200 ]
 	    }
 	}
     }
